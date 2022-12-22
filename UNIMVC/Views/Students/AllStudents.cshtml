@@ -1,0 +1,25 @@
+﻿@using UNI.Persistence.Models
+
+@model StudentModel
+
+<tr>
+    <td class="align-middle">
+        @Html.DisplayFor(modelItem => Model.Id)
+    </td>
+    <td class="align-middle">
+        <img class="rounded-circle " src="@Model.UrlStudentPhoto" alt="@Model.FirstName" width=150 height=150 />
+    </td>
+
+    <td class="align-middle">
+        @Html.DisplayFor(modelItem => Model.FirstName)
+        @Html.DisplayFor(modelItem => Model.LastName)
+    </td>
+    <td class="align-middle">
+        @Html.DisplayFor(modelItem => Model.Email)
+    </td>
+    <td class="align-middle">
+        <a class="btn btn-outline-primary" asp-controller="Students" asp-action="Contact" asp-route-id="@Model.Id"><i class="bi bi-pencil-square"></i> Contact </a> |
+        <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@Model.Id"><i class="bi bi-pencil-square"></i> Edit </a> |
+        <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@Model.Id"><i class="bi bi-trash"></i> Delete </a>
+    </td>
+</tr>

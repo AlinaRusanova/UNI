@@ -1,0 +1,64 @@
+﻿@using UNI.Persistence.Models
+@using UNI.WebApi.Models
+
+@model IEnumerable<GroupModel>
+
+@{
+    ViewData["Title"] = "List of Groups";
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th> № </th>
+                    <th> Name of group</th>
+                    <th>Speciality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var group in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => group.Id)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => group.GroupName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => group.Speciality)
+                        </td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-primary" asp-controller="Students" asp-action="List" asp-route-id="@group.Id"><i class="bi bi-eye"></i> Students </a> |
+                            <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@group.Id"><i class="bi bi-pencil-square"></i> Edit </a> |
+                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@group.Id"><i class="bi bi-trash"></i> Delete </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>           
+        </table>
+
+        <partial name="pager" model="@pager" />
+
+    </div>
+</div>
+
+
+<div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+    <a asp-controller="Groups" asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add New
+    </a>
+</div>

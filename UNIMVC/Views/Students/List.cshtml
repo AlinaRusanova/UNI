@@ -1,0 +1,54 @@
+﻿@using UNI.Persistence.Models
+@using UNI.WebApi.Models
+
+@model IEnumerable<StudentModel>
+
+@{
+    ViewData["Title"] = "List of Students";
+    Pager pager = new Pager();
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th> № </th>
+                    <th> Student's Picture</th>
+                    <th> Full Name</th>
+                    <th> Email </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    @Html.Partial("AllStudents",student)
+                }
+
+                
+            </tbody>
+            
+        </table>
+
+        <partial name="pager" model="@pager"/>
+
+
+    </div>
+</div>
+
+
+<div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+    <a asp-controller="Students" asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add New
+    </a>
+</div>
+

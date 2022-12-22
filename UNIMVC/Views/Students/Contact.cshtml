@@ -1,0 +1,73 @@
+﻿@using UNI.Persistence.Models
+
+@model StudentModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Profile</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                
+                    <div class="form-group text-center">
+                        <img id="StudentPhotoPreview" width=300 height=400 />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UrlStudentPhoto" class="control-label"></label>
+                        <input asp-for="UrlStudentPhoto" class="form-control" readonly/>
+                        <span asp-validation-for="UrlStudentPhoto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" readonly />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" readonly />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" readonly />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" readonly />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" readonly />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GroupId" class="control-label"></label>
+                    <input asp-for="GroupId" class="form-control" readonly />
+                    <span asp-validation-for="GroupId" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                    <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    <a class="btn btn-outline-secondary" asp-action="List" >Show All</a>
+                    </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                var output = document.getElementById('StudentPhotoPreview');
+                output.src = $("#UrlStudentPhoto").val();
+            })
+        </script>
+    }
