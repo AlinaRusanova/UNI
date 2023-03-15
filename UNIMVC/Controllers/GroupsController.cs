@@ -44,6 +44,11 @@ namespace UNI.WebApi.Controllers
              return View(data); 
         }
 
+        public async Task<ActionResult<Group>> List()
+        {
+            return View();
+        }
+
         public async Task<ActionResult<Group>> Create()
         {
             return View();
